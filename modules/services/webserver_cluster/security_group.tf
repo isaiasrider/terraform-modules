@@ -2,12 +2,6 @@ resource "aws_security_group" "asg_security_group" {
   name = lower("sg_${var.cluster_name}")
 
   ingress {
-    from_port = 8080
-    protocol = "tcp"
-    to_port = 8080
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
     from_port = var.server_port
     protocol = "tcp"
     to_port = 80
