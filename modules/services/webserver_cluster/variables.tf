@@ -27,3 +27,8 @@ variable "max_size" {
   type = number
 }
 
+variable "custom_tags" {
+  type = map(string)
+  default = {}
+}
+
