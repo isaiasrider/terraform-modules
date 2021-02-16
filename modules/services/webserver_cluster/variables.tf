@@ -3,7 +3,7 @@ variable "server_port" {
 }
 
 variable "cluster_name" {
-  description = "the name used for all the clusters"
+  description = "the name used for all the clusters resources"
   type = string
 }
 
@@ -30,5 +30,10 @@ variable "max_size" {
 variable "custom_tags" {
   type = map(string)
   default = {}
+}
+
+variable "enable_autoscaling" {
+  description = "scale in and out depending of the hour"
+  type = bool
 }
 
