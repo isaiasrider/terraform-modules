@@ -1,6 +1,6 @@
 resource "aws_launch_configuration" "asg_web_launch_configuration" {
   image_id = "ami-0a0ad6b70e61be944"
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   security_groups = [aws_security_group.asg_security_group.id]
   name = "${var.cluster_name}-lc"
   user_data = data.template_file.script.rendered
