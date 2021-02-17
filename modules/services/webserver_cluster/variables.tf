@@ -1,3 +1,8 @@
+variable "instance_type" {
+  description = "instance size"
+  default = "t2.micro"
+}
+
 variable "server_port" {
   default = 80
 }
