@@ -10,7 +10,7 @@ resource "aws_autoscaling_schedule" "scale-out-during-business-hours" {
 
 resource "aws_autoscaling_schedule" "scale-in-at-nigh" {
   scheduled_action_name = "${var.cluster_name}-scale-in-at-night"
-  count = var.enable_autoscaling ? 0 : 1
+  count = var.enable_autoscaling ? 1 : 0
   min_size = 1
   max_size = 2
   desired_capacity = 2
