@@ -3,7 +3,9 @@ resource "aws_launch_configuration" "asg_web_launch_configuration" {
   instance_type = var.instance_type
   security_groups = [aws_security_group.asg_security_group.id]
   name = "${var.cluster_name}-lc"
-  user_data = data.template_file.script.rendered
+  user_data = (
+          length(data.template_file.user-data[*]) > 0 ? data.template_file.user-data[0].rendered : data.template_file.new-user-data[0].rendered
+          )
   key_name = "terraform"
 
 
@@ -91,11 +93,3 @@ resource "aws_lb_listener_rule" "listener_rule" {
   }
 }
 
-data template_file script {
-  template = "${file("${path.module}/script/user-data.sh")}"
-  vars = {
-    database_address = data.terraform_remote_state.db.outputs.db_url
-    database_port = data.terraform_remote_state.db.outputs.db_port
-
-  }
-}

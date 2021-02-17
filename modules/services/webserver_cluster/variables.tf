@@ -3,6 +3,10 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "server_name" {
+  type = string
+}
+
 variable "server_port" {
   default = 80
 }
@@ -39,6 +43,10 @@ variable "custom_tags" {
 
 variable "enable_autoscaling" {
   description = "scale in and out depending of the hour"
+  type = bool
+}
+
+variable "enable_new_user_data" {
   type = bool
 }
 

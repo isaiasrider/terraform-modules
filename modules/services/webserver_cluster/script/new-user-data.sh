@@ -13,4 +13,4 @@ chmod 2775 /var/www
 find /var/www -type d -exec chmod 2775 {} \;
 find /var/www -type f -exec chmod 0664 {} \;
 echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
-echo "welcome to my ${server_name} DB_INSTANCE: ${database_address} DB_PORT: ${database_port}" >> /var/www/html/index.html
+echo "welcome to my OTHER SERVER \n DB_INSTANCE: ${database_address} DB_PORT: ${database_port}" >> /var/www/html/index.html
