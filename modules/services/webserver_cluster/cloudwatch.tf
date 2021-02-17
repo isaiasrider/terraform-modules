@@ -14,7 +14,7 @@ resource "aws_cloudwatch_metric_alarm" "high-cpu-utilization" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "low-cpu-credit-balance" {
-  count = format("%.1s", var.instance_type == "t" ? 1 : 0)
+  count = format("%.1s", var.instance_type) == "t" ? 1 : 0
   alarm_name = "${var.cluster_name}-low-cpu-credit-balance"
   comparison_operator = "LessThanThreshold"
   evaluation_periods = 1
