@@ -1,13 +1,9 @@
 resource "aws_launch_configuration" "asg_web_launch_configuration" {
-  image_id = "ami-0a0ad6b70e61be944"
+  image_id = var.ami
   instance_type = var.instance_type
   security_groups = [aws_security_group.asg_security_group.id]
-  name = "${var.cluster_name}-lc"
-  user_data = (
-          length(data.template_file.user-data[*]) > 0 ? data.template_file.user-data[0].rendered : data.template_file.new-user-data[0].rendered
-          )
+  user_data = data.template_file.user-data.rendered
   key_name = "terraform"
-
 
   lifecycle {
     create_before_destroy = true
@@ -15,16 +11,18 @@ resource "aws_launch_configuration" "asg_web_launch_configuration" {
 
 }
 
-
 resource "aws_autoscaling_group" "asg_web" {
   launch_configuration = aws_launch_configuration.asg_web_launch_configuration.name
   max_size = var.max_size
   min_size = var.min_size
   vpc_zone_identifier = data.aws_subnet_ids.default.ids
-  name_prefix = "${var.cluster_name}-instance"
-
+  name = "${var.cluster_name}-${aws_launch_configuration.asg_web_launch_configuration.name}"
   target_group_arns = [aws_lb_target_group.target_group_asg.arn]
   health_check_type = "ELB"
+  min_elb_capacity = var.min_size
+  lifecycle {
+    create_before_destroy = true
+  }
 
   tag {
     key = "Name"

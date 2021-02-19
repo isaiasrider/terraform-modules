@@ -50,3 +50,12 @@ variable "enable_new_user_data" {
   type = bool
 }
 
+variable "server_text" {
+  description = "text showed up to index page"
+  type = string
+}
+
+variable "ami" {
+  type = string
+  default = "ami-0a0ad6b70e61be944"
+}

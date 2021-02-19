@@ -18,21 +18,11 @@ data "terraform_remote_state" "db" {
 }
 
 data template_file "user-data" {
-  count = var.enable_new_user_data ? 0 : 1
   template = "${file("${path.module}/script/user-data.sh")}"
   vars = {
     database_address = data.terraform_remote_state.db.outputs.db_url
     database_port = data.terraform_remote_state.db.outputs.db_port
-
-  }
-}
-data template_file "new-user-data" {
-  count = var.enable_new_user_data ? 1 : 0
-  template = file("${path.module}/script/new-user-data.sh")
-  vars = {
-    database_address = data.terraform_remote_state.db.outputs.db_url
-    database_port = data.terraform_remote_state.db.outputs.db_port
-    server_name = var.server_name
+    server_text = var.server_text
 
   }
 }
