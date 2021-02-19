@@ -20,4 +20,4 @@ cat > /var/www/html/index.html <<EOF
 <p>DB address: ${database_address}</p>
 <p>DB port: ${database_port}</p>
 EOF
-echo "welcome to my ${server_name} DB_INSTANCE: ${database_address} DB_PORT: ${database_port}" >> /var/www/html/index.html
+echo "welcome to my server DB_INSTANCE: ${database_address} DB_PORT: ${database_port}" >> /var/www/html/index.html
