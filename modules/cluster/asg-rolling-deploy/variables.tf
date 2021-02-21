@@ -37,9 +37,6 @@ variable "enable_autoscaling" {
   type = bool
 }
 
-variable "enable_new_user_data" {
-  type = bool
-}
 
 variable "server_text" {
   description = "text showed up to index page"
@@ -67,5 +64,5 @@ variable "heal_check_type" {
 
 variable "user_data" {
   type = string
-  default = ""
+  default = " "
 }
