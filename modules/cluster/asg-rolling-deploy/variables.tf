@@ -16,15 +16,6 @@ variable "cluster_name" {
   type = string
 }
 
-variable "db_remote_state_bucket" {
-  description = "the name of s3 bucket used to point db's tf-remote-state"
-  type = string
-}
-
-variable "db_remote_state_key" {
-  description = "path to reach the tf-remote-state db"
-  type = string
-}
 
 variable "min_size" {
   description = "set up minimum size over ASGs"
@@ -58,4 +49,23 @@ variable "server_text" {
 variable "ami" {
   type = string
   default = "ami-0a0ad6b70e61be944"
+}
+
+variable "subnet_ids" {
+  type = list(string)
+}
+
+variable "target_group_arns" {
+  type = list(string)
+  default = []
+}
+
+variable "heal_check_type" {
+  type = string
+  default = "ELB"
+}
+
+variable "user_data" {
+  type = string
+  default = ""
 }

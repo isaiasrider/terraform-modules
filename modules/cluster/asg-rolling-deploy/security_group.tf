@@ -1,0 +1,27 @@
+resource "aws_security_group" "asg_security_group_instances" {
+  name = lower("sg_${var.cluster_name}_instances")
+
+  ingress {
+    from_port = var.server_port
+    protocol = "tcp"
+    to_port = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port = 0
+    protocol = "-1"
+    to_port = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = "${var.cluster_name}-sg"
+  }
+}
+
