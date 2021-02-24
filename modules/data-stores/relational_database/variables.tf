@@ -21,3 +21,5 @@ variable "instance_class" {
   description = "define instance class"
   type = string
 }
+
+

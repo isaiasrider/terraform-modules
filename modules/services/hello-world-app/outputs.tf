@@ -9,3 +9,7 @@ output "asg_name" {
 output "instance_security_group_id" {
   value = module.asg.instance_security_group_id
 }
+
+output "lb_target_group_arn" {
+  value = aws_lb_target_group.target_group_asg.arn
+}

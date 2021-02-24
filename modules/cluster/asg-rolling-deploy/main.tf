@@ -21,6 +21,7 @@ resource "aws_autoscaling_group" "asg_web" {
   target_group_arns = var.target_group_arns
   health_check_type = var.heal_check_type
   min_elb_capacity = var.min_size
+  wait_for_elb_capacity = 0
   lifecycle {
     create_before_destroy = true
   }
