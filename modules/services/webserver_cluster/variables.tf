@@ -3,6 +3,8 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "user_data" {}
+
 variable "server_port" {
   default = 80
 }
