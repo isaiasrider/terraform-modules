@@ -9,8 +9,6 @@ data "aws_subnet_ids" "default" {
 data template_file "user-data" {
   template = "${file("${path.module}/script/user-data.sh")}"
   vars = {
-
-    version = var.container_version
-
+    container_version = var.container_version
   }
 }
