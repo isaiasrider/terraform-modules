@@ -3,6 +3,10 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "instance_profile" {
+  type = string
+}
+
 variable "user_data" {}
 
 variable "server_port" {

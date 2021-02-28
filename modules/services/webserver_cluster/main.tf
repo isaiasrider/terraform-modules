@@ -4,6 +4,7 @@ resource "aws_launch_configuration" "asg_web_launch_configuration" {
   security_groups = [aws_security_group.asg_security_group.id]
   user_data = var.user_data
   key_name = "terraform"
+  iam_instance_profile = var.instance_profile
 
   lifecycle {
     create_before_destroy = true
@@ -41,7 +42,7 @@ resource "aws_autoscaling_group" "asg_web" {
 }
 
 resource "aws_lb" "lb_web" {
-  name = "${var.cluster_name}-terraform-lb-asg"
+  name = "${var.cluster_name}"
   load_balancer_type = "application"
   subnets = data.aws_subnet_ids.default.ids
   security_groups = [aws_security_group.asg_security_group.id]
